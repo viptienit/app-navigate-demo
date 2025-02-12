@@ -1,5 +1,17 @@
 import { useState } from "react";
-import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, ImageBackground, Text, View } from "react-native";
+import { Input, InputField, InputIcon, InputSlot } from "./ui/input";
+import {
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from "./ui/checkbox";
+import { CheckIcon, EyeIcon, EyeOffIcon } from "./ui/icon";
+import { Button, ButtonText } from "./ui/button";
+import { Link, LinkText } from "./ui/link";
+import { LinearGradient } from "expo-linear-gradient";
+import styles from "./Login/css";
 
 interface IUser {
   name: string;
@@ -9,6 +21,8 @@ interface IUser {
 const Login = ({ navigation }: any) => {
   const listUser: IUser[] = [{ name: "loi123", password: "123456" }];
   const [name, setName] = useState("");
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
   const [password, setPassword] = useState("");
   const Login = () => {
     if (
@@ -17,76 +31,95 @@ const Login = ({ navigation }: any) => {
       Alert.alert("Thông báo", "Đăng nhập thành công");
       navigation.navigate("home");
     } else {
-      Alert.alert("Thông báo", "Tài khoản hoặc mật khẩu không chính xác");
+      Alert.alert("Thông báo", name + password);
     }
   };
   return (
-    <View style={styles.containe}>
-      <View style={styles.container}>
-        <Text style={styles.title}>LOGIN</Text>
-        <View>
-          <View style={styles.info}>
-            <Text style={styles.with100}>UserName: </Text>
-            <TextInput
+    <ImageBackground
+      source={require("./Login/image/bg-login.png")}
+      style={styles.containe}
+      resizeMode="cover"
+    >
+      <LinearGradient
+        style={styles.background}
+        colors={["transparent", "rgba(0,0,0,0.3)", "rgba(0,0,0,0.9)"]}
+      >
+        <View style={styles.container}>
+          <Text style={styles.title}>Login to your account</Text>
+          <View style={styles.row}>
+            <Text>Don’t have an account? </Text>
+            <Link href="#">
+              <LinkText>Sign up</LinkText>
+            </Link>
+          </View>
+
+          <Text style={[styles.label, styles.mg_t_20]}>Email</Text>
+          <Input
+            style={styles.mg_t_5}
+            variant="outline"
+            size="md"
+            isDisabled={false}
+            isInvalid={false}
+            isReadOnly={false}
+          >
+            <InputField
               value={name}
-              onChangeText={(v) => setName(v)}
-              style={styles.input}
+              onChangeText={(value) => setName(value)}
+              placeholder="abc@gmail.com"
             />
-          </View>
-          <View style={styles.info}>
-            <Text style={styles.with100}>Password: </Text>
-            <TextInput
+          </Input>
+          <Text style={[styles.label, styles.mg_t_20]}>Password</Text>
+          <Input
+            style={styles.mg_t_5}
+            variant="outline"
+            size="md"
+            isDisabled={false}
+            isInvalid={false}
+            isReadOnly={false}
+          >
+            <InputField
+              type={isShowPassword ? "text" : "password"}
               value={password}
-              onChangeText={(v) => setPassword(v)}
-              style={styles.input}
+              onChangeText={(value) => setPassword(value)}
+              placeholder="Your password"
             />
+            <InputSlot>
+              {isShowPassword ? (
+                <InputIcon style={styles.mr_10} as={EyeIcon} />
+              ) : (
+                <InputIcon style={styles.mr_10} as={EyeOffIcon} />
+              )}
+            </InputSlot>
+          </Input>
+          <View style={[styles.row, styles.between, styles.mg_t_10]}>
+            <Checkbox
+              value="true"
+              size="md"
+              isInvalid={false}
+              isDisabled={false}
+            >
+              <CheckboxIndicator>
+                <CheckboxIcon as={CheckIcon} />
+              </CheckboxIndicator>
+              <CheckboxLabel>Remember login</CheckboxLabel>
+            </Checkbox>
+            <Link href="#">
+              <LinkText>Forgot Password?</LinkText>
+            </Link>
           </View>
+          <Button
+            style={[styles.mg_t_20]}
+            size="md"
+            variant="solid"
+            action="primary"
+            onPress={() => Login()}
+          >
+            <ButtonText>Login</ButtonText>
+          </Button>
         </View>
-        <View style={[styles.info, styles.button]}>
-          <Button onPress={Login} title="Login" />
-          <Button title="Sign Up" />
-        </View>
-      </View>
-    </View>
+      </LinearGradient>
+    </ImageBackground>
   );
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#e6e6e6",
-    width: "90%",
-    padding: 15,
-    alignItems: "center",
-    borderRadius: 12,
-  },
-  input: {
-    padding: 5,
-    backgroundColor: "white",
-    width: 200,
-    borderRadius: 6,
-  },
-  info: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  button: {
-    width: "100%",
-    justifyContent: "space-evenly",
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 30,
-  },
-  with100: {
-    width: 80,
-  },
-  containe: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00b36b",
-  },
-});
