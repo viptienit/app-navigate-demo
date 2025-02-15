@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
-import { ROBOTO, YELLOWTAIL } from "./utils/const";
+import { OPENSANS, ROBOTO, YELLOWTAIL } from "./utils/const";
 
 const Stack = createStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -15,6 +15,7 @@ export default function App() {
   const [loaded, error] = useFonts({
     [YELLOWTAIL]: require("./assets/fonts/Yellowtail-Regular.ttf"),
     [ROBOTO]: require("./assets/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf"),
+    [OPENSANS]: require("./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf"),
   });
 
   useEffect(() => {
