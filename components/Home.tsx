@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Keyboard, Pressable, StyleSheet, Text, View } from "react-native";
 import Header from "./Header/Header";
+import BannerHome from "./BannerHome/BannerHome";
 
 const Home = () => {
   return (
-    <View style={[styles.flex_1]}>
+    <Pressable onPress={() => Keyboard.dismiss()} style={[styles.flex_1]}>
       <Header />
-    </View>
+      <BannerHome />
+    </Pressable>
   );
 };
 export default Home;
