@@ -3,11 +3,11 @@ import {
   ImageBackground,
   Pressable,
   Text,
-  TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import styles from "./css";
-import { globalStyles } from "@/utils/const";
+import { globalStyles } from "@/utils/globalStyles";
 
 const BannerHome = () => {
   return (
@@ -15,13 +15,22 @@ const BannerHome = () => {
       style={[styles.bg_banner_home]}
       source={require("./img/BannerHome.png")}
     >
-      <View>
-        <Text style={[globalStyles.fontYellowtail]}>100% Natural Food</Text>
-        <Text>Choose the best healthier way of life</Text>
-        <Pressable>
-          <Text>Explore Now</Text>
-          <Image source={require("./img/Arrow-banner-home.png")} />
-        </Pressable>
+      <View style={styles.ml_30}>
+        <Text style={[globalStyles.fontYellowtail, styles.text]}>
+          100% Natural Food
+        </Text>
+        <Text style={[globalStyles.fontRoboto, styles.title]}>
+          Choose the best healthier way {"\n"}of life
+        </Text>
+        <TouchableOpacity style={[styles.button]}>
+          <Text style={[globalStyles.fontRoboto, styles.bt_txt]}>
+            Explore Now
+          </Text>
+          <Image
+            style={styles.img}
+            source={require("./img/Arrow-banner-home.png")}
+          />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

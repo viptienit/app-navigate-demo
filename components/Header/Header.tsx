@@ -1,5 +1,6 @@
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./css";
+import { globalStyles } from "@/utils/globalStyles";
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
                 source={require("./img/icon-cart.png")}
               />
             </TouchableOpacity>
-            <Text>Cart (0)</Text>
+            <Text style={[globalStyles.fontRoboto]}>Cart (0)</Text>
           </View>
         </View>
       </View>
