@@ -1,5 +1,6 @@
-import { Image, Text, TextInput, View } from "react-native";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./css";
+import { globalStyles } from "@/utils/globalStyles";
 
 const Header = () => {
   return (
@@ -8,22 +9,22 @@ const Header = () => {
         <Image style={styles.header_logo} source={require("./img/Logo.png")} />
         <View style={styles.header_item}>
           <View style={styles.search_block}>
-            <TextInput style={styles.flex_1} />
-            <View style={styles.btn_search}>
+            <TextInput numberOfLines={1} style={styles.flex_1} />
+            <TouchableOpacity style={styles.btn_search}>
               <Image
                 style={styles.icon_search}
                 source={require("./img/icon-search.png")}
               />
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.cart_block}>
-            <View style={styles.btn_cart}>
+            <TouchableOpacity style={styles.btn_cart}>
               <Image
                 style={styles.icon_search}
                 source={require("./img/icon-cart.png")}
               />
-            </View>
-            <Text>Cart (0)</Text>
+            </TouchableOpacity>
+            <Text style={[globalStyles.fontRoboto]}>Cart (0)</Text>
           </View>
         </View>
       </View>

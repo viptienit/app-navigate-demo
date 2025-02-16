@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   header_container: {
     width: "100%",
     maxWidth: 1920,
+    flexShrink: 1,
     padding: 20,
     backgroundColor: "white",
   },
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    flexShrink: 1,
     maxWidth: 1600,
     gap: 5,
   },
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
   },
   header_item: {
     maxWidth: 500,
+    flexShrink: 1,
     width: "100%",
     flexDirection: "row",
   },
@@ -31,7 +34,9 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingLeft: 10,
     borderRadius: 36,
-    width: 140,
+    width: "100%",
+    maxWidth: 140,
+    flexShrink: 1,
     marginRight: 5,
   },
   cart_block: {
@@ -40,9 +45,11 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     padding: 5,
     paddingRight: 15,
-    width: 120,
+    width: "100%",
+    maxWidth: 120,
     borderWidth: 1,
     borderColor: "#E0E0E0",
+    flexShrink: 1,
   },
   flex_1: {
     flex: 1,
